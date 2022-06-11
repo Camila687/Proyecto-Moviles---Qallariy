@@ -22,15 +22,15 @@ import java.util.List;
 
 public class NegocioAdapterRecyclerView extends RecyclerView.Adapter<NegocioAdapterRecyclerView.NeogocioViewHolder> {
 
-    private List<Negocio>negocios=new ArrayList<>();
+    private List<Negocio>business=new ArrayList<>();
     private Context context;
     private ArrayList<Negocio> negociosArrayList;
     private IAxiliarNegocio iAxiliarNegocio;
 
-    public NegocioAdapterRecyclerView(IAxiliarNegocio iAxiliarNegocio,ArrayList<Negocio> negocios) {
+    public NegocioAdapterRecyclerView(IAxiliarNegocio iAxiliarNegocio,ArrayList<Negocio> business) {
         this.iAxiliarNegocio=iAxiliarNegocio;
-        this.negocios = negocios;
-        this.negociosArrayList=negocios;
+        this.business = business;
+        this.negociosArrayList=business;
     }
 
 
@@ -44,12 +44,15 @@ public class NegocioAdapterRecyclerView extends RecyclerView.Adapter<NegocioAdap
 
     @Override
     public void onBindViewHolder(NeogocioViewHolder holder, int position) {
-        Negocio negocio = negocios.get(position);
+        Negocio negocio = business.get(position);
         holder.txtCodigoMostrar.setText(String.valueOf(negocio.getCodigo()));
         Picasso.get().load(negocio.getPicture()).into(holder.pictureCard);
         holder.userNameCard.setText(negocio.getName());
         holder.descriptionNegocio.setText(negocio.getDescription());
         holder.desCategoria.setText(negocio.getCategoria());
+
+
+
         holder.btnEditNegocio.setOnClickListener(new eventoEditar(negocio));
         holder.btnDeleteNegocio.setOnClickListener(new eventoEliminar(negocio));
 
@@ -59,16 +62,16 @@ public class NegocioAdapterRecyclerView extends RecyclerView.Adapter<NegocioAdap
 
     @Override
     public int getItemCount() {
-        return negocios.size();
+        return business.size();
     }
 
     public void agregarNegocio(Negocio negocio) {
-        negocios.add(negocio);
+        business.add(negocio);
         this.notifyDataSetChanged();
     }
 
     public void eliminarNegocio(Negocio negocio) {
-        negocios.remove(negocio);
+        business.remove(negocio);
         this.notifyDataSetChanged();
     }
 

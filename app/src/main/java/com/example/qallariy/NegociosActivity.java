@@ -66,19 +66,19 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
 
     private void mostrarDatos() {
         SQLiteDatabase sqLiteDatabase = sqLite.getReadableDatabase();
-        Negocio negocio = null;
+        Negocio nego = null;
 
         Cursor cursor=sqLiteDatabase.rawQuery("select * from negocio",null);
         while (cursor.moveToNext()) {
-            negocio = new Negocio();
-            negocio.setCodigo(cursor.getInt(0));
-            negocio.setPicture(cursor.getString(1));
-            negocio.setName(cursor.getString(2));
-            negocio.setDescription(cursor.getString(3));
-            negocio.setCategoria(cursor.getString(4));
-            negocioAdapterRecyclerView.agregarNegocio(negocio);
+            nego = new Negocio();
+            nego.setCodigo(cursor.getInt(0));
+            nego.setPicture(cursor.getString(1));
+            nego.setName(cursor.getString(2));
+            nego.setDescription(cursor.getString(3));
+            nego.setCategoria(cursor.getString(4));
+            negocioAdapterRecyclerView.agregarNegocio(nego);
 
-            Toast.makeText(this, "Si lee "+negocio.getPicture(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Si lee "+nego.getPicture(), Toast.LENGTH_SHORT).show();
 
         }
     }
