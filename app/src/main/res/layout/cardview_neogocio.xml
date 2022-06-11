@@ -29,11 +29,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:background="@drawable/cardview"
+            android:background="@color/White"
             android:layout_marginLeft="10sp"
             android:layout_marginTop="14sp"
             />
-        <!--android:background="@color/White"-->
+        <!--android:background="@drawable/cardview"-->
 
         <LinearLayout
             android:layout_width="match_parent"
