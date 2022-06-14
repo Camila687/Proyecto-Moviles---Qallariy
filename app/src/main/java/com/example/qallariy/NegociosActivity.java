@@ -36,16 +36,20 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
         id=b.getInt("Id");
 
         negocioRecycler=findViewById(R.id.negocioRecycler);
+        RecyclerView recyclerView=findViewById(R.id.negocioRecycler);
         negocioArrayList=new ArrayList<>();
         sqLite = new SqLite(this,"negocio",null,1);
 
         negocioAdapterRecyclerView= new NegocioAdapterRecyclerView(this,negocioArrayList);
 
-        RecyclerView recyclerView=findViewById(R.id.negocioRecycler);
+        mostrarDatos();
+
         recyclerView.setLayoutManager(new GridLayoutManager(this,1));
         recyclerView.setAdapter(negocioAdapterRecyclerView);
 
-        mostrarDatos();
+
+
+
     }
 
     public void goNegocioAdd(View view) {
@@ -78,6 +82,7 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
             nego.setCategoria(cursor.getString(4));
             negocioAdapterRecyclerView.agregarNegocio(nego);
 
+            System.out.println("Si lee"+nego.getPicture());
             Toast.makeText(this, "Si lee "+nego.getPicture(), Toast.LENGTH_SHORT).show();
 
         }

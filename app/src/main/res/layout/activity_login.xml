@@ -91,6 +91,25 @@
                     />
                 <!--android:onClick="goContainer"-->
 
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="120dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/verNegocios"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="goListNegocio"
+                        android:text="Ver Negocios"
+                        android:textColor="@color/editTextColorWhite"
+                        android:textSize="@dimen/textsize_donthaveaccount"
+                        android:textStyle="bold"
+                        android:background="@color/color_background"
+                        />
+
+                </RelativeLayout>
 
 
                 <RelativeLayout

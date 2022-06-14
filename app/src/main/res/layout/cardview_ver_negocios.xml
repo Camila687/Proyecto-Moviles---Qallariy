@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/negocioCardViewLista"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    app:cardCornerRadius="@dimen/cornerradius_cardview"
+    android:fitsSystemWindows="true"
+
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
+        >
+
+        <TextView
+            android:id="@+id/txtCodigoMostrarLista"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:visibility="invisible"
+            />
+
+
+        <ImageView
+            android:id="@+id/pictureCardLista"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:background="@color/White"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="14sp"
+            />
+        <!--android:background="@drawable/cardview"-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            android:paddingLeft="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:background="@color/background_textcard"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/userNamecardLista"
+                    android:text="Moonshop"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/textSize_userName_card"
+                    android:layout_width="180dp"
+                    android:layout_marginLeft="90dp"
+                    android:layout_height="wrap_content"/>
+
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/descriptionNegocioLista"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Piezas úicas e intencionadas con un poco de...."
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/textSize_pizza_card"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/categoriaLista"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Categoría: "
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/textSize_pizza_card"
+                    />
+
+                <TextView
+                    android:id="@+id/desCategoriaLista"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tienda de accesorios"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/textSize_pizza_card"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+
+                >
+
+                <Button
+                    android:id="@+id/btnDetalle"
+                    android:theme="@style/RaisedButtonDark"
+                    android:layout_width="150dp"
+                    android:layout_height="39dp"
+                    android:text="Ver Detalle"
+                    android:textSize="10dp"
+                    android:onClick="verListNegocio"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</androidx.cardview.widget.CardView>

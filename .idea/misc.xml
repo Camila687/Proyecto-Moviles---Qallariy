@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Camila/5TO CICLO/DAM I/evaluaciones/Qallariy/app/src/main/res/layout/actionbar_toolbar.xml" value="0.12158054711246201" />
         <entry key="..\:/Camila/5TO CICLO/DAM I/evaluaciones/Qallariy/app/src/main/res/layout/activity_add_negocio.xml" value="0.16" />
         <entry key="..\:/Camila/5TO CICLO/DAM I/evaluaciones/Qallariy/app/src/main/res/layout/activity_create_vendedor.xml" value="0.15489130434782608" />
         <entry key="..\:/Camila/5TO CICLO/DAM I/evaluaciones/Qallariy/app/src/main/res/layout/activity_edit_negocio.xml" value="0.16" />
@@ -11,7 +12,9 @@
         <entry key="..\:/Camila/5TO CICLO/DAM I/evaluaciones/Qallariy/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Camila/5TO CICLO/DAM I/evaluaciones/Qallariy/app/src/main/res/layout/activity_negocios.xml" value="0.264" />
         <entry key="..\:/Camila/5TO CICLO/DAM I/evaluaciones/Qallariy/app/src/main/res/layout/activity_profile.xml" value="0.16" />
+        <entry key="..\:/Camila/5TO CICLO/DAM I/evaluaciones/Qallariy/app/src/main/res/layout/activity_ver_negocios.xml" value="0.259375" />
         <entry key="..\:/Camila/5TO CICLO/DAM I/evaluaciones/Qallariy/app/src/main/res/layout/cardview_neogocio.xml" value="0.2" />
+        <entry key="..\:/Camila/5TO CICLO/DAM I/evaluaciones/Qallariy/app/src/main/res/layout/cardview_ver_negocios.xml" value="0.259375" />
       </map>
     </option>
   </component>
