@@ -10,6 +10,7 @@ public class Negocio implements Serializable {
     private String description;
     private String categoria;
 
+
     public Negocio() {
 
     }
@@ -20,6 +21,7 @@ public class Negocio implements Serializable {
         this.name = name;
         this.description = description;
         this.categoria = categoria;
+
     }
 
     public int getCodigo() {
@@ -61,4 +63,6 @@ public class Negocio implements Serializable {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+
+
 }

@@ -15,7 +15,7 @@ public class SqLite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table if not exists negocio(codigo int,image varchar,nombre varchar, descripcion varchar,categoria varchar)");
+        db.execSQL("create table if not exists negocio(codigo int,image varchar,nombre varchar, descripcion varchar,categoria varchar, idVendedor int)");
     }
 
     @Override

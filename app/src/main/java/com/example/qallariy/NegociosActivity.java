@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
 
         negocioRecycler=findViewById(R.id.negocioRecycler);
         RecyclerView recyclerView=findViewById(R.id.negocioRecycler);
+
         negocioArrayList=new ArrayList<>();
         sqLite = new SqLite(this,"negocio",null,1);
 
@@ -83,7 +85,7 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
             negocioAdapterRecyclerView.agregarNegocio(nego);
 
             System.out.println("Si lee"+nego.getPicture());
-            Toast.makeText(this, "Si lee "+nego.getPicture(), Toast.LENGTH_SHORT).show();
+
 
         }
     }

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:id="@+id/mostrarLista"
     android:fitsSystemWindows="true"
-    tools:context=".NegociosActivity">
+    tools:context=".VerNegociosActivity">
 
     <include layout="@layout/actionbar_toolbar"/>
 

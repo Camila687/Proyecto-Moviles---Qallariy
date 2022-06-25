@@ -46,10 +46,11 @@ public class NegocioAdapterRecyclerView extends RecyclerView.Adapter<NegocioAdap
     public void onBindViewHolder(NeogocioViewHolder holder, int position) {
         Negocio negocio = business.get(position);
         holder.txtCodigoMostrar.setText(String.valueOf(negocio.getCodigo()));
-        Picasso.get().load(negocio.getPicture()).into(holder.pictureCard);
+        Picasso.get().load(negocio.getPicture()).error(R.drawable.notfound).into(holder.pictureCard);
         holder.userNameCard.setText(negocio.getName());
         holder.descriptionNegocio.setText(negocio.getDescription());
         holder.desCategoria.setText(negocio.getCategoria());
+
 
 
 
@@ -110,6 +111,8 @@ public class NegocioAdapterRecyclerView extends RecyclerView.Adapter<NegocioAdap
         private TextView userNameCard;
         private TextView descriptionNegocio;
         private TextView desCategoria;
+
+
 
         private Button btnEditNegocio, btnDeleteNegocio;
 

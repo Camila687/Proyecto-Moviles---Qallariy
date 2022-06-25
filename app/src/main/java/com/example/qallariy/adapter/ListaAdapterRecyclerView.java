@@ -45,7 +45,7 @@ public class ListaAdapterRecyclerView extends RecyclerView.Adapter<ListaAdapterR
     public void onBindViewHolder(ListaViewHolder holder, int position) {
         Negocio negocio = business.get(position);
         holder.txtCodigoMostrarLista.setText(String.valueOf(negocio.getCodigo()));
-        Picasso.get().load(negocio.getPicture()).into(holder.pictureCardLista);
+        Picasso.get().load(negocio.getPicture()).error(R.drawable.notfound).into(holder.pictureCardLista);
         holder.userNameCardLista.setText(negocio.getName());
         holder.descriptionNegocioLista.setText(negocio.getDescription());
         holder.desCategoriaLista.setText(negocio.getCategoria());
