@@ -29,9 +29,12 @@ public class ProductListActivity extends AppCompatActivity implements IAxiliarPr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
 
-        showToolbar(getResources().getString(R.string.toolbar_title_ver) , true);
+        showToolbar(getResources().getString(R.string.toolbar_title_producto) , true);
 
         dao=new daoProducto(this);
+        Bundle b=getIntent().getExtras();
+        id=b.getInt("Id");
+        //IdVendedor=b.getInt("IdVendedor");
 
         //sqLite = new SqLite(this,"negocio",null,1);
 
@@ -77,7 +80,7 @@ public class ProductListActivity extends AppCompatActivity implements IAxiliarPr
 
         }*/
 
-        listArrayList = dao.selectProducto();
+        listArrayList = dao.ProductobyNegocio(id);
 
 
     }

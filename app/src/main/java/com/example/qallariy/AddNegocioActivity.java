@@ -19,7 +19,7 @@ public class AddNegocioActivity extends AppCompatActivity {
 
     private TextInputEditText txtCodigo,txtImage, txtNombre, txtDescripcion, txtCategoria;
     private Button btnGuardar, btnCancelAdd;
-    int id=0;
+    int IdVendedor=0;
 
     daoNegocio dao;
 
@@ -31,7 +31,7 @@ public class AddNegocioActivity extends AppCompatActivity {
         dao=new daoNegocio(this);
 
         Bundle b=getIntent().getExtras();
-        id=b.getInt("Id");
+        IdVendedor=b.getInt("IdVendedor");
 
         txtCodigo=(TextInputEditText)findViewById(R.id.negocioCodigoAdd);
         txtImage=(TextInputEditText)findViewById(R.id.negocioImage);
@@ -53,7 +53,7 @@ public class AddNegocioActivity extends AppCompatActivity {
                     limpiarTextos();
                     Toast.makeText(AddNegocioActivity.this, "Datos Registrados", Toast.LENGTH_SHORT).show();
                     Intent i2 = new Intent(AddNegocioActivity.this, NegociosActivity.class);
-                    i2.putExtra("Id",id);
+                    i2.putExtra("IdVendedor",IdVendedor);
                     startActivity(i2);
                     finish();
                 }
@@ -66,7 +66,7 @@ public class AddNegocioActivity extends AppCompatActivity {
     public void goAddNegocioCancel(View view) {
 
         Intent intent = new Intent(this , NegociosActivity.class);
-        intent.putExtra("Id",id);
+        intent.putExtra("IdVendedor",IdVendedor);
         startActivity(intent);
 
     }
@@ -88,7 +88,7 @@ public class AddNegocioActivity extends AppCompatActivity {
         n.setDescription(descripcion);
         n.setName(nombreNegocio);
         n.setCategoria(categoria);
-        n.setIdVendedor(id);
+        n.setIdVendedor(IdVendedor);
         //Long resultado=sqLiteDatabase.insert("negocio",null,values);
 
         if (!n.isNull()) {

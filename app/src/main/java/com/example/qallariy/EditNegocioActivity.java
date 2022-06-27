@@ -27,7 +27,7 @@ public class EditNegocioActivity extends AppCompatActivity {
 
     daoNegocio dao;
 
-    int id=0;
+    int IdVendedor=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class EditNegocioActivity extends AppCompatActivity {
         dao=new daoNegocio(this);
 
         Bundle b=getIntent().getExtras();
-        id=b.getInt("Id");
+        IdVendedor=b.getInt("IdVendedor");
 
         txtCodigoEditar = findViewById(R.id.negocioCodigoEdit);
         txtImageEdit = findViewById(R.id.negocioImageEdit);
@@ -70,7 +70,7 @@ public class EditNegocioActivity extends AppCompatActivity {
     public void goEditNegocioCancel(View view) {
 
         Intent intent = new Intent(this , NegociosActivity.class);
-        intent.putExtra("Id",id);
+        intent.putExtra("IdVendedor",IdVendedor);
         startActivity(intent);
 
     }
@@ -92,7 +92,7 @@ public class EditNegocioActivity extends AppCompatActivity {
         n.setDescription(descripcion);
         n.setName(nombre);
         n.setCategoria(categoria);
-        n.setIdVendedor(id);
+        n.setIdVendedor(IdVendedor);
 
         /*sqLiteDatabase.update("negocio",values,"codigo="+codigo,null);
         sqLiteDatabase.close();*/
@@ -102,7 +102,7 @@ public class EditNegocioActivity extends AppCompatActivity {
         }else if (dao.updateNegocio(n)) {
             Toast.makeText(this, "Actualizacion exitosa!!", Toast.LENGTH_SHORT).show();
             Intent i2=new Intent(EditNegocioActivity.this,NegociosActivity.class);
-            i2.putExtra("Id",id);
+            i2.putExtra("IdVendedor",IdVendedor);
             startActivity(i2);
             finish();
         } else {

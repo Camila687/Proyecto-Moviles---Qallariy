@@ -22,7 +22,9 @@ public class EditProductoActivity extends AppCompatActivity {
     private Button btnUpdateP;
 
     daoProducto dao;
-    int id=0;
+    int IdProducto=0;
+    int IdNegocio=0;
+    int IdVendedor=0;
 
 
     @Override
@@ -33,7 +35,9 @@ public class EditProductoActivity extends AppCompatActivity {
         dao=new daoProducto(this);
 
         Bundle b=getIntent().getExtras();
-        id=b.getInt("Id");
+        IdProducto=b.getInt("IdProducto");
+        IdNegocio=b.getInt("IdNegocio");
+        IdVendedor=b.getInt("IdVendedor");
 
         txtCodigoPEditar = findViewById(R.id.productoCodigoEdit);
         txtImagePEdit = findViewById(R.id.productoImageEdit);
@@ -51,7 +55,7 @@ public class EditProductoActivity extends AppCompatActivity {
             }
         });
 
-        producto=(Producto) dao.getProductoById(id);
+        producto=(Producto) dao.getProductoById(IdProducto);
         llenarDatos();
     }
 
@@ -68,7 +72,8 @@ public class EditProductoActivity extends AppCompatActivity {
     public void goEditProductoCancel(View view) {
 
         Intent intent = new Intent(this , ProductoActivity.class);
-        intent.putExtra("Id",id);
+        intent.putExtra("IdNegocio",IdNegocio);
+        intent.putExtra("IdVendedor",IdVendedor);
         startActivity(intent);
 
     }
@@ -92,7 +97,7 @@ public class EditProductoActivity extends AppCompatActivity {
         p.setDescripcion(descripcion);
         p.setPrecio(precio);
         p.setCantidad(cantidad);
-        p.setIdNegocio(id);
+        p.setIdNegocio(IdNegocio);
 
         /*sqLiteDatabase.update("negocio",values,"codigo="+codigo,null);
         sqLiteDatabase.close();*/
@@ -102,7 +107,8 @@ public class EditProductoActivity extends AppCompatActivity {
         }else if (dao.updateProducto(p)) {
             Toast.makeText(this, "Actualizacion exitosa!!", Toast.LENGTH_SHORT).show();
             Intent i2=new Intent(EditProductoActivity.this,ProductoActivity.class);
-            i2.putExtra("Id",id);
+            i2.putExtra("IdNegocio",IdNegocio);
+            i2.putExtra("IdVendedor",IdVendedor);
             startActivity(i2);
             finish();
         } else {

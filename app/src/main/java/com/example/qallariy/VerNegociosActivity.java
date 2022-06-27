@@ -100,7 +100,7 @@ public class VerNegociosActivity extends AppCompatActivity implements IAxiliarLi
     public void OpcionDetalle(Negocio negocio) {
         Intent intent = new Intent(this , ProductListActivity.class);
         intent.putExtra("Id",negocio.getCodigo());
-        intent.putExtra("IdVendedor",id);
+        intent.putExtra("IdProducto",id);
         startActivity(intent);
     }
 

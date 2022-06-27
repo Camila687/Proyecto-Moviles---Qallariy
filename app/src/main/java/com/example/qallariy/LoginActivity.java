@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Vendedor ux=dao.getVendedor(v,p);
                     Toast.makeText(this, "Datos correctos", Toast.LENGTH_SHORT).show();
                     Intent i2=new Intent(LoginActivity.this, NegociosActivity.class);
-                    i2.putExtra("Id",ux.getId());
+                    i2.putExtra("IdVendedor",ux.getId());
                     startActivity(i2);
                     finish();
                 } else {

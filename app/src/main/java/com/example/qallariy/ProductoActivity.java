@@ -24,7 +24,7 @@ public class ProductoActivity extends AppCompatActivity implements IAxiliarProdu
     RecyclerView productoRecycler;
     ArrayList<Producto> productoArrayList;
     //SqLite sqLite;
-    int id=0;
+    int IdNegocio=0;
     int IdVendedor =0;
     private ProductoAdapterRecyclerView productoAdapterRecyclerView;
     daoProducto dao;
@@ -37,7 +37,7 @@ public class ProductoActivity extends AppCompatActivity implements IAxiliarProdu
         dao=new daoProducto(this);
 
         Bundle b=getIntent().getExtras();
-        id=b.getInt("Id");
+        IdNegocio=b.getInt("IdNegocio");
         IdVendedor=b.getInt("IdVendedor");
 
         productoRecycler=findViewById(R.id.productoRecycler);
@@ -57,7 +57,8 @@ public class ProductoActivity extends AppCompatActivity implements IAxiliarProdu
     public void goProductoAgregar(View view) {
 
         Intent intent = new Intent(this , AddProductoActivity.class);
-        intent.putExtra("Id",id);
+        intent.putExtra("IdNegocio",IdNegocio);
+        intent.putExtra("IdVendedor",IdVendedor);
         startActivity(intent);
 
     }
@@ -65,7 +66,8 @@ public class ProductoActivity extends AppCompatActivity implements IAxiliarProdu
     public void goVolver(View v) {
 
         Intent intent = new Intent(this , NegociosActivity.class);
-        intent.putExtra("Id",IdVendedor);
+        intent.putExtra("IdNegocio",IdNegocio);
+        intent.putExtra("IdVendedor",IdVendedor);
         startActivity(intent);
 
     }
@@ -76,7 +78,7 @@ public class ProductoActivity extends AppCompatActivity implements IAxiliarProdu
 
 
         ArrayList<Producto> productos= new ArrayList<Producto>();
-        productos=dao.ProductobyNegocio(id);
+        productos=dao.ProductobyNegocio(IdNegocio);
         for(int i =0;i < productos.size();i++){
             productoAdapterRecyclerView.agregarProducto(productos.get(i));
             Log.v("========",productos.get(i).getDescripcion());
@@ -88,7 +90,9 @@ public class ProductoActivity extends AppCompatActivity implements IAxiliarProdu
         Intent i3=new Intent(ProductoActivity.this,EditProductoActivity.class);
         //i3.putExtra("producto", producto);
         //i3.p
-        i3.putExtra("Id",producto.getCodigo());
+        i3.putExtra("IdNegocio",IdNegocio);
+        i3.putExtra("IdVendedor",IdVendedor);
+        i3.putExtra("IdProducto",producto.getCodigo());
         startActivity(i3);
 
     }
@@ -104,7 +108,8 @@ public class ProductoActivity extends AppCompatActivity implements IAxiliarProdu
             public void onClick(DialogInterface dialogInterface, int i) {
                 if(dao.deleteProducto(producto.getCodigo())) {
                     Intent c=new Intent(ProductoActivity.this,ProductoActivity.class);
-                    c.putExtra("Id",producto.getIdNegocio());
+                    c.putExtra("IdNegocio",producto.getIdNegocio());
+                    c.putExtra("IdVendedor",IdVendedor);
                     startActivity(c);
                     Toast.makeText(ProductoActivity.this, "Se elminó sin problemas", Toast.LENGTH_SHORT).show();
                     productoAdapterRecyclerView.eliminarProducto(producto);

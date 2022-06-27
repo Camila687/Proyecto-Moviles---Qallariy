@@ -26,7 +26,7 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
     RecyclerView negocioRecycler;
     ArrayList<Negocio> negocioArrayList;
     //SqLite sqLite;
-    int id=0;
+    int IdVendedor=0;
     private NegocioAdapterRecyclerView negocioAdapterRecyclerView;
     daoNegocio dao;
 
@@ -38,7 +38,7 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
         dao=new daoNegocio(this);
 
         Bundle b=getIntent().getExtras();
-        id=b.getInt("Id");
+        IdVendedor=b.getInt("IdVendedor");
 
         negocioRecycler=findViewById(R.id.negocioRecycler);
         RecyclerView recyclerView=findViewById(R.id.negocioRecycler);
@@ -69,7 +69,7 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
     public void goNegocioAdd(View view) {
 
         Intent intent = new Intent(this , AddNegocioActivity.class);
-        intent.putExtra("Id",id);
+        intent.putExtra("IdVendedor",IdVendedor);
         startActivity(intent);
 
     }
@@ -77,7 +77,7 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
     public void goProfile(View v) {
 
         Intent intent = new Intent(this , ProfileActivity.class);
-        intent.putExtra("Id",id);
+        intent.putExtra("IdVendedor",IdVendedor);
         startActivity(intent);
 
     }
@@ -101,7 +101,8 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
 
         }*/
         ArrayList<Negocio> negocios= new ArrayList<Negocio>();
-        negocios=dao.NegociobyVendedor(id);
+        negocios=dao.NegociobyVendedor(IdVendedor);
+        Log.v("======",String.valueOf(IdVendedor));
         for(int i =0;i < negocios.size();i++){
             negocioAdapterRecyclerView.agregarNegocio(negocios.get(i));
         }
@@ -112,7 +113,7 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
     public void OpcionEditar(Negocio negocio) {
         Intent intent=new Intent(NegociosActivity.this,EditNegocioActivity.class);
         intent.putExtra("negocio",negocio);
-        intent.putExtra("Id",id);
+        intent.putExtra("IdVendedor",IdVendedor);
         startActivity(intent);
 
     }
@@ -129,7 +130,7 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
             public void onClick(DialogInterface dialogInterface, int i) {
                 if(dao.deleteNegocio(negocio.getCodigo())) {
                     Intent c=new Intent(NegociosActivity.this,NegociosActivity.class);
-                    c.putExtra("Id",id);
+                    c.putExtra("IdVendedor",IdVendedor);
                     startActivity(c);
                     Toast.makeText(NegociosActivity.this, "Se elminó sin problemas", Toast.LENGTH_SHORT).show();
                     negocioAdapterRecyclerView.eliminarNegocio(negocio);
@@ -153,8 +154,8 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
     @Override
     public void OpcionListar(Negocio negocio) {
         Intent intent = new Intent(this , ProductoActivity.class);
-        intent.putExtra("Id",negocio.getCodigo());
-        intent.putExtra("IdVendedor",id);
+        intent.putExtra("IdNegocio",negocio.getCodigo());
+        intent.putExtra("IdVendedor",IdVendedor);
         startActivity(intent);
     }
 

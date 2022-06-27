@@ -26,7 +26,7 @@ public class daoNegocio {
     }
 
     public boolean insertNegocio(Negocio n) {
-        if (buscar(String.valueOf(n.getCodigo()))==0) {
+        if (buscar(String.valueOf(n.getCodigo()))==1) {
             ContentValues cv=new ContentValues();
             cv.put("codigo",n.getCodigo());
             cv.put("image",n.getPicture());
@@ -42,7 +42,7 @@ public class daoNegocio {
     }
 
     private int buscar(String n) {
-        int x=0;
+        int x=1;
         lista=selectNegocio();
         for (Negocio ne:lista) {
             if(String.valueOf(ne.getIdVendedor()).equals(n)) {
@@ -71,7 +71,7 @@ public class daoNegocio {
         }
         if(lista == null) {Log.v("lista","nulonulonulo");}
         if(lista.size() == 0) {Log.v("lista","vaciavaciavaciaa");}
-        Log.v("======",lista.get(0).getName());
+
         return lista;
 
     }

@@ -103,6 +103,8 @@ public class daoVendedor {
         for (Vendedor ve:lista) {
             Log.v("id de parametro",String.valueOf(id));
             if(ve.getId()==id) {
+                Log.v("Retorna vendedor",String.valueOf(lista.size()));
+                Log.v("Id Vendedor",String.valueOf(ve.getId()));
             return ve;
             }
         }

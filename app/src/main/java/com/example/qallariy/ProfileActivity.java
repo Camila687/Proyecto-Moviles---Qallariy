@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,8 +19,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     Button btnEditar, btnEliminar, btnNegocios, btnSalir;
     TextView nombre;
-    int id=0;
-    Vendedor v;
+    int IdVendedor=0;
+    Vendedor v = new Vendedor();
     daoVendedor dao;
 
 
@@ -28,16 +29,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Bundle b=getIntent().getExtras();
-        id=b.getInt("Id");
-        dao=new daoVendedor(this);
-        v=dao.getVendedorById(id);
 
-        if(v==null){
-            nombre.setText(v.getNombre()+" "+v.getApellidos());
-        }/*else{
 
-        }*/
+
 
         nombre=(TextView)findViewById(R.id.nombreUsuario);
         btnEditar=(Button)findViewById(R.id.btnEditar);
@@ -49,8 +43,19 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         btnNegocios.setOnClickListener(this);
         btnSalir.setOnClickListener(this);
 
+        Bundle b=getIntent().getExtras();
+        IdVendedor=b.getInt("IdVendedor");
+
+        dao=new daoVendedor(this);
+        v=dao.getVendedorById(IdVendedor);
+
+        Log.v("===========",String.valueOf(IdVendedor));
 
 
+        if(v==null){
+            nombre.setText(v.getNombre()+" "+v.getApellidos());
+        } else {
+            Log.v("Vendedor es null","null");        }
 
 
     }
@@ -61,7 +66,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         switch (view.getId()) {
             case R.id.btnEditar:
                 Intent a=new Intent(ProfileActivity.this,EditVendedorActivity.class);
-                a.putExtra("Id",id);
+                a.putExtra("IdVendedor",IdVendedor);
                 startActivity(a);
                 break;
             case R.id.btnEliminar:
@@ -71,7 +76,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 b.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if(dao.deleteVendedor(id)) {
+                        if(dao.deleteVendedor(IdVendedor)) {
                             Toast.makeText(ProfileActivity.this, "Se elminó sin problemas", Toast.LENGTH_SHORT).show();
                             Intent a=new Intent(ProfileActivity.this,LoginActivity.class);
                             startActivity(a);
@@ -91,7 +96,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.btnNegocios:
                 Intent c=new Intent(ProfileActivity.this,NegociosActivity.class);
-                c.putExtra("Id",id);
+                c.putExtra("IdVendedor",IdVendedor);
                 startActivity(c);
                 finish();
                 break;

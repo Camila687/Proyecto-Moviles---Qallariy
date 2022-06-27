@@ -16,7 +16,7 @@ public class EditVendedorActivity extends AppCompatActivity implements View.OnCl
 
     EditText editUser, editPass,editNombre, editApellido, editDocumento, editTelefono;
     Button btnActualizar, btnCancelar;
-    int id=0;
+    int IdVendedor=0;
     Vendedor v;
     daoVendedor dao;
     Intent x;
@@ -38,9 +38,9 @@ public class EditVendedorActivity extends AppCompatActivity implements View.OnCl
         btnCancelar.setOnClickListener(this);
 
         Bundle b=getIntent().getExtras();
-        id=b.getInt("Id");
+        IdVendedor=b.getInt("IdVendedor");
         dao=new daoVendedor(this);
-        v=dao.getVendedorById(id);
+        v=dao.getVendedorById(IdVendedor);
         editUser.setText(v.getCorreo());
         editPass.setText(v.getPassword());
         editNombre.setText(v.getNombre());
@@ -65,7 +65,7 @@ public class EditVendedorActivity extends AppCompatActivity implements View.OnCl
                 }else if (dao.updateVendedor(v)) {
                     Toast.makeText(this, "Actualizacion exitosa!!", Toast.LENGTH_SHORT).show();
                     Intent i2=new Intent(EditVendedorActivity.this,ProfileActivity.class);
-                    i2.putExtra("Id",v.getId());
+                    i2.putExtra("IdVendedor",v.getId());
                     startActivity(i2);
                     finish();
                 } else {
@@ -74,7 +74,7 @@ public class EditVendedorActivity extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.btnEditCancelar:
                 Intent i1=new Intent(EditVendedorActivity.this,ProfileActivity.class);
-                i1.putExtra("Id",v.getId());
+                i1.putExtra("IdVendedor",v.getId());
                 startActivity(i1);
                 finish();
                 break;

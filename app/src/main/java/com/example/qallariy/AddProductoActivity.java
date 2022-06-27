@@ -12,11 +12,14 @@ import com.example.qallariy.dao.daoProducto;
 import com.example.qallariy.models.Producto;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.net.IDN;
+
 public class AddProductoActivity extends AppCompatActivity {
 
     private TextInputEditText txtCodigoP,txtImageP, txtNombreP, txtDescripcionP, txtPrecioP, txtCantidadP;
     private Button btnGuardarP, btnCancelP;
-    int id=0;
+    int IdNegocio=0;
+    int IdVendedor=0;
 
     daoProducto dao;
 
@@ -28,7 +31,8 @@ public class AddProductoActivity extends AppCompatActivity {
         dao=new daoProducto(this);
 
         Bundle b=getIntent().getExtras();
-        id=b.getInt("Id");
+        IdNegocio =b.getInt("IdNegocio");
+        IdVendedor=b.getInt("IdVendedor");
 
 
         txtCodigoP=(TextInputEditText)findViewById(R.id.productoCodigoAdd);
@@ -52,7 +56,8 @@ public class AddProductoActivity extends AppCompatActivity {
                     limpiarTextos();
                     Toast.makeText(AddProductoActivity.this, "Datos Registrados", Toast.LENGTH_SHORT).show();
                     Intent i2 = new Intent(AddProductoActivity.this, ProductoActivity.class);
-                    i2.putExtra("Id",id);
+                    i2.putExtra("IdNegocio",IdNegocio);
+                    i2.putExtra("IdVendedor",IdVendedor);
                     startActivity(i2);
                     finish();
                 }
@@ -63,7 +68,8 @@ public class AddProductoActivity extends AppCompatActivity {
     public void goAddProductoCancel(View view) {
 
         Intent intent = new Intent(this , ProductoActivity.class);
-        intent.putExtra("Id",id);
+        intent.putExtra("IdNegocio",IdNegocio);
+        intent.putExtra("IdVendedor",IdVendedor);
         startActivity(intent);
 
     }
@@ -87,7 +93,7 @@ public class AddProductoActivity extends AppCompatActivity {
         p.setDescripcion(descripcion);
         p.setPrecio(precio);
         p.setCantidad(cantidad);
-        p.setIdNegocio(id);
+        p.setIdNegocio(IdNegocio);
         //Long resultado=sqLiteDatabase.insert("negocio",null,values);
 
         if (!p.isNull()) {
@@ -95,6 +101,8 @@ public class AddProductoActivity extends AppCompatActivity {
         } else if (dao.insertProducto(p)) {
             Toast.makeText(this, "Registro exitoso!!", Toast.LENGTH_SHORT).show();
             Intent i2 = new Intent(AddProductoActivity.this, ProductoActivity.class);
+            i2.putExtra("IdNegocio",IdNegocio);
+            i2.putExtra("IdVendedor",IdVendedor);
             startActivity(i2);
             finish();
         } else {
