@@ -37,7 +37,7 @@ public class AddNegocioActivity extends AppCompatActivity {
         txtImage=(TextInputEditText)findViewById(R.id.negocioImage);
         txtNombre=(TextInputEditText)findViewById(R.id.negocioNameAdd);
         txtDescripcion=(TextInputEditText)findViewById(R.id.descripcionNegocioAdd);
-        txtCategoria=(TextInputEditText)findViewById(R.id.costoPizzaAdd);
+        txtCategoria=(TextInputEditText)findViewById(R.id.categoriaNegocioAdd);
 
         btnGuardar=(Button) findViewById(R.id.btnNegocioAdd);
         btnCancelAdd=(Button) findViewById(R.id.btnCancelNegocio);
@@ -95,7 +95,7 @@ public class AddNegocioActivity extends AppCompatActivity {
             Toast.makeText(this, "ERROR: Campos vacios", Toast.LENGTH_SHORT).show();
         } else if (dao.insertNegocio(n)) {
             Toast.makeText(this, "Registro exitoso!!", Toast.LENGTH_SHORT).show();
-            Intent i2 = new Intent(AddNegocioActivity.this, LoginActivity.class);
+            Intent i2 = new Intent(AddNegocioActivity.this, NegociosActivity.class);
             startActivity(i2);
             finish();
         } else {

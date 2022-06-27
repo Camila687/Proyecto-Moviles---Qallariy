@@ -138,7 +138,7 @@
                     android:layout_marginTop="@dimen/editText_margin_createaccount"
                     >
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/costoPizzaAdd"
+                        android:id="@+id/categoriaNegocioAdd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Category"

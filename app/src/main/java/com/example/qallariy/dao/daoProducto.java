@@ -16,7 +16,7 @@ public class daoProducto {
     ArrayList<Producto> lista;
     SQLiteDatabase sql;
     String bd="BDNeogocio";
-    String table="create table if not exists producto(codigo int,nombre varchar,descripcion varchar, precio decimal,cantidad int, idNegocio int)";
+    String table="create table if not exists producto(codigo int,image varchar,nombre varchar,descripcion varchar, precio decimal,cantidad int, idNegocio int)";
 
     public daoProducto(Context c) {
         this.c=c;
@@ -29,6 +29,7 @@ public class daoProducto {
         if (buscar(String.valueOf(p.getCodigo()))==0) {
             ContentValues cv=new ContentValues();
             cv.put("codigo",p.getCodigo());
+            cv.put("image",p.getImage());
             cv.put("nombre",p.getNombre());
             cv.put("descripcion",p.getDescripcion());
             cv.put("precio",p.getPrecio());
@@ -60,6 +61,7 @@ public class daoProducto {
             do {
                 Producto p=new Producto();
                 p.setCodigo(cr.getInt(0));
+                p.setImage(cr.getString(1));
                 p.setNombre(cr.getString(1));
                 p.setDescripcion(cr.getString(2));
                 p.setPrecio(cr.getDouble(3));
@@ -97,6 +99,7 @@ public class daoProducto {
     public boolean updateProducto(Producto p) {
         ContentValues cv=new ContentValues();
         cv.put("codigo",p.getCodigo());
+        cv.put("image",p.getImage());
         cv.put("nombre",p.getNombre());
         cv.put("descripcion",p.getDescripcion());
         cv.put("precio",p.getPrecio());
@@ -108,6 +111,28 @@ public class daoProducto {
 
     public boolean deleteProducto(int id) {
         return (sql.delete("producto","id="+id,null)>0);
+    }
+
+    public ArrayList<Producto> ProductobyNegocio(int id) {
+        ArrayList<Producto> lista=new ArrayList<Producto>();
+        lista.clear();;
+        Cursor cr=sql.rawQuery("select * from producto where idNegocio="+id,null);
+        if(cr!=null&&cr.moveToFirst()) {
+            do {
+                Producto p=new Producto();
+                p.setCodigo(cr.getInt(0));
+                p.setImage(cr.getString(1));
+                p.setNombre(cr.getString(1));
+                p.setDescripcion(cr.getString(2));
+                p.setPrecio(cr.getDouble(3));
+                p.setCantidad(cr.getInt(4));
+                p.setIdNegocio(cr.getInt(5));
+                lista.add(p);
+            }while (cr.moveToNext());
+
+        }
+        return lista;
+
     }
 
 }

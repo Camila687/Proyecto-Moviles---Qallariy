@@ -43,7 +43,7 @@ public class EditNegocioActivity extends AppCompatActivity {
         txtImageEdit = findViewById(R.id.negocioImageEdit);
         txtNombreEditar = findViewById(R.id.negocioNameEdit);
         txtDescripcionEditar = findViewById(R.id.descripcionNegocioEdit);
-        txtCategoriaEditar = findViewById(R.id.costoPizzaEdit);
+        txtCategoriaEditar = findViewById(R.id.categoriaNegocioEdit);
         btnUpdate = findViewById(R.id.btnNegocioEdit);
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {

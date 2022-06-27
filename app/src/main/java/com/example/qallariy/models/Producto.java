@@ -2,13 +2,13 @@ package com.example.qallariy.models;
 
 public class Producto {
     int codigo;
-    String nombre,descripcion;
+    String image,nombre,descripcion;
     double precio;
     int cantidad;
     int idNegocio;
 
     public boolean isNull() {
-        if(String.valueOf(codigo).equals("")&&nombre.equals("")&&descripcion.equals("")&&String.valueOf(precio).equals("")&&String.valueOf(cantidad).equals("")&&String.valueOf(idNegocio).equals("")) {
+        if(String.valueOf(codigo).equals("")&&image.equals("")&&nombre.equals("")&&descripcion.equals("")&&String.valueOf(precio).equals("")&&String.valueOf(cantidad).equals("")&&String.valueOf(idNegocio).equals("")) {
             return false;
         } else {
             return true;
@@ -19,8 +19,9 @@ public class Producto {
 
     }
 
-    public Producto(int codigo, String nombre, String descripcion, double precio, int cantidad, int idNegocio) {
+    public Producto(int codigo,String image, String nombre, String descripcion, double precio, int cantidad, int idNegocio) {
         this.codigo = codigo;
+        this.image = image;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -32,6 +33,7 @@ public class Producto {
     public String toString() {
         return "Producto{" +
                 "codigo=" + codigo +
+                ", image='" + image + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", precio=" + precio +
@@ -86,5 +88,13 @@ public class Producto {
 
     public void setIdNegocio(int idNegocio) {
         this.idNegocio = idNegocio;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
