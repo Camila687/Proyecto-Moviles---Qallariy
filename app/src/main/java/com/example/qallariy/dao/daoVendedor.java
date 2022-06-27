@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.qallariy.models.Vendedor;
 
@@ -56,7 +57,8 @@ public class daoVendedor {
         lista.clear();;
         Cursor cr=sql.rawQuery("select * from vendedor",null);
         if(cr!=null&&cr.moveToFirst()) {
-            do {
+            Log.v("valor del cursor",cr.getString(3));
+        do {
                 Vendedor v=new Vendedor();
                 v.setId(cr.getInt(0));
                 v.setCorreo(cr.getString(1));
@@ -99,10 +101,12 @@ public class daoVendedor {
     public Vendedor getVendedorById(int id) {
         lista=selectVendedor();
         for (Vendedor ve:lista) {
+            Log.v("id de parametro",String.valueOf(id));
             if(ve.getId()==id) {
-                return ve;
+            return ve;
             }
         }
+
         return null;
     }
 

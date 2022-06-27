@@ -2,13 +2,13 @@ package com.example.qallariy.models;
 
 public class Producto {
     int codigo;
-    String image,nombre,descripcion;
+    String image,nombreP,descripcion;
     double precio;
     int cantidad;
     int idNegocio;
 
     public boolean isNull() {
-        if(String.valueOf(codigo).equals("")&&image.equals("")&&nombre.equals("")&&descripcion.equals("")&&String.valueOf(precio).equals("")&&String.valueOf(cantidad).equals("")&&String.valueOf(idNegocio).equals("")) {
+        if(String.valueOf(codigo).equals("")&&image.equals("")&&nombreP.equals("")&&descripcion.equals("")&&String.valueOf(precio).equals("")&&String.valueOf(cantidad).equals("")&&String.valueOf(idNegocio).equals("")) {
             return false;
         } else {
             return true;
@@ -19,10 +19,10 @@ public class Producto {
 
     }
 
-    public Producto(int codigo,String image, String nombre, String descripcion, double precio, int cantidad, int idNegocio) {
+    public Producto(int codigo,String image, String nombreP, String descripcion, double precio, int cantidad, int idNegocio) {
         this.codigo = codigo;
         this.image = image;
-        this.nombre = nombre;
+        this.nombreP = nombreP;
         this.descripcion = descripcion;
         this.precio = precio;
         this.cantidad = cantidad;
@@ -34,7 +34,7 @@ public class Producto {
         return "Producto{" +
                 "codigo=" + codigo +
                 ", image='" + image + '\'' +
-                ", nombre='" + nombre + '\'' +
+                ", nombreP='" + nombreP + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", precio=" + precio +
                 ", cantidad=" + cantidad +
@@ -50,12 +50,12 @@ public class Producto {
         this.codigo = codigo;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreP() {
+        return nombreP;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreP(String nombreP) {
+        this.nombreP = nombreP;
     }
 
     public String getDescripcion() {

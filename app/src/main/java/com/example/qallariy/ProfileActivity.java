@@ -28,6 +28,17 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        Bundle b=getIntent().getExtras();
+        id=b.getInt("Id");
+        dao=new daoVendedor(this);
+        v=dao.getVendedorById(id);
+
+        if(v==null){
+            nombre.setText(v.getNombre()+" "+v.getApellidos());
+        }/*else{
+
+        }*/
+
         nombre=(TextView)findViewById(R.id.nombreUsuario);
         btnEditar=(Button)findViewById(R.id.btnEditar);
         btnEliminar=(Button)findViewById(R.id.btnEliminar);
@@ -38,11 +49,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         btnNegocios.setOnClickListener(this);
         btnSalir.setOnClickListener(this);
 
-        Bundle b=getIntent().getExtras();
-        id=b.getInt("Id");
-        dao=new daoVendedor(this);
-        v=dao.getVendedorById(id);
-        nombre.setText(v.getNombre()+" "+v.getApellidos());
+
+
+
 
     }
 

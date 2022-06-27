@@ -25,6 +25,7 @@ public class ProductoActivity extends AppCompatActivity implements IAxiliarProdu
     ArrayList<Producto> productoArrayList;
     //SqLite sqLite;
     int id=0;
+    int IdVendedor =0;
     private ProductoAdapterRecyclerView productoAdapterRecyclerView;
     daoProducto dao;
 
@@ -37,6 +38,7 @@ public class ProductoActivity extends AppCompatActivity implements IAxiliarProdu
 
         Bundle b=getIntent().getExtras();
         id=b.getInt("Id");
+        IdVendedor=b.getInt("IdVendedor");
 
         productoRecycler=findViewById(R.id.productoRecycler);
         RecyclerView recyclerView=findViewById(R.id.productoRecycler);
@@ -52,7 +54,7 @@ public class ProductoActivity extends AppCompatActivity implements IAxiliarProdu
         recyclerView.setAdapter(productoAdapterRecyclerView);
     }
 
-    public void goProductoAdd(View view) {
+    public void goProductoAgregar(View view) {
 
         Intent intent = new Intent(this , AddProductoActivity.class);
         intent.putExtra("Id",id);
@@ -63,7 +65,7 @@ public class ProductoActivity extends AppCompatActivity implements IAxiliarProdu
     public void goVolver(View v) {
 
         Intent intent = new Intent(this , NegociosActivity.class);
-        intent.putExtra("Id",id);
+        intent.putExtra("Id",IdVendedor);
         startActivity(intent);
 
     }
@@ -84,8 +86,9 @@ public class ProductoActivity extends AppCompatActivity implements IAxiliarProdu
     @Override
     public void OpcionEditarProducto(Producto producto) {
         Intent i3=new Intent(ProductoActivity.this,EditProductoActivity.class);
-        i3.putExtra("producto", (Parcelable) producto);
-        i3.putExtra("Id",id);
+        //i3.putExtra("producto", producto);
+        //i3.p
+        i3.putExtra("Id",producto.getCodigo());
         startActivity(i3);
 
     }
@@ -94,17 +97,20 @@ public class ProductoActivity extends AppCompatActivity implements IAxiliarProdu
     public void OpcionEliminarProducto(Producto producto) {
         AlertDialog.Builder alert=new AlertDialog.Builder(this);
         alert.setTitle("Mensaje");
-        alert.setMessage("Esta seguro de eliminar?? "+producto.getNombre());
+        alert.setMessage("Esta seguro de eliminar?? "+producto.getNombreP());
         alert.setCancelable(false);
         alert.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if(dao.deleteProducto(id)) {
+                if(dao.deleteProducto(producto.getCodigo())) {
+                    Intent c=new Intent(ProductoActivity.this,ProductoActivity.class);
+                    c.putExtra("Id",producto.getIdNegocio());
+                    startActivity(c);
                     Toast.makeText(ProductoActivity.this, "Se elminó sin problemas", Toast.LENGTH_SHORT).show();
                     productoAdapterRecyclerView.eliminarProducto(producto);
                     finish();
                 }else {
-                    Toast.makeText(ProductoActivity.this, "Error: No se eliminó la cuenta", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductoActivity.this, "Error: No se eliminó el producto", Toast.LENGTH_SHORT).show();
                 }
 
             }

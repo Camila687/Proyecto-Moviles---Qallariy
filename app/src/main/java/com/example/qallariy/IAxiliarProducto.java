@@ -6,4 +6,6 @@ public interface IAxiliarProducto {
     void OpcionEditarProducto(Producto producto);
 
     void OpcionEliminarProducto(Producto producto);
+
+
 }

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 
 import com.example.qallariy.adapter.ListaAdapterRecyclerView;
+import com.example.qallariy.dao.daoNegocio;
 import com.example.qallariy.models.Negocio;
 //import com.example.qallariy.models.SqLite;
 
@@ -28,18 +29,21 @@ public class VerNegociosActivity extends AppCompatActivity implements IAxiliarLi
     //SqLite sqLite;
     int id=0;
     private ListaAdapterRecyclerView listaAdapterRecyclerView;
+    daoNegocio dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_negocios);
 
+        dao=new daoNegocio(this);
+
         showToolbar(getResources().getString(R.string.toolbar_title_ver) , true);
 
         //sqLite = new SqLite(this,"negocio",null,1);
 
         listaRecycler=findViewById(R.id.negocioRecyclerLista);
-        listaArrayList=new ArrayList<>();
+        listaArrayList=new ArrayList<Negocio>();
         mostrarDatos();
 
 
@@ -62,7 +66,7 @@ public class VerNegociosActivity extends AppCompatActivity implements IAxiliarLi
 
     }
 
-    private void mostrarDatos() {
+    public void mostrarDatos() {
         //SQLiteDatabase sqLiteDatabase = sqLite.getReadableDatabase();
         Negocio nego = null;
         //ArrayList<Negocio> listaNegocios = new ArrayList();
@@ -82,12 +86,22 @@ public class VerNegociosActivity extends AppCompatActivity implements IAxiliarLi
 
         }*/
 
+        //ArrayList<Negocio> listanegocios= new ArrayList<Negocio>();
+        //listanegocios=dao.selectNegocio();
+        //for(int i =0;i < listanegocios.size();i++){
+         //   listaArrayList.add(listanegocios.get(i));
+        //}
+        listaArrayList = dao.selectNegocio();
+
 
     }
 
     @Override
     public void OpcionDetalle(Negocio negocio) {
-
+        Intent intent = new Intent(this , ProductListActivity.class);
+        intent.putExtra("Id",negocio.getCodigo());
+        intent.putExtra("IdVendedor",id);
+        startActivity(intent);
     }
 
 

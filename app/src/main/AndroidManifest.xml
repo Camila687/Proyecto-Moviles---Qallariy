@@ -13,7 +13,14 @@
         android:theme="@style/Theme.Qallariy">
         <activity
             android:name=".ProductListActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".VerNegociosActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".VerNegociosActivity" />
+
+        </activity>
         <activity
             android:name=".AddProductoActivity"
             android:exported="false" />

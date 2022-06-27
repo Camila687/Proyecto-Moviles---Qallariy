@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.qallariy.models.Negocio;
-import com.example.qallariy.models.Vendedor;
 
 import java.util.ArrayList;
 
@@ -70,8 +69,10 @@ public class daoNegocio {
             }while (cr.moveToNext());
 
         }
+        if(lista == null) {Log.v("lista","nulonulonulo");}
+        if(lista.size() == 0) {Log.v("lista","vaciavaciavaciaa");}
         Log.v("======",lista.get(0).getName());
-    return lista;
+        return lista;
 
     }
 
@@ -104,12 +105,13 @@ public class daoNegocio {
             cv.put("descripcion",n.getDescription());
             cv.put("categoria",n.getCategoria());
             cv.put("idVendedor",n.getIdVendedor());
-            return(sql.update("negocio",cv,"id="+n.getCodigo(),null)>0);
+            return(sql.update("negocio",cv,"codigo="+n.getCodigo(),null)>0);
 
     }
 
     public boolean deleteNegocio(int id) {
-        return (sql.delete("negocio","id="+id,null)>0);
+        Log.v("=====",String.valueOf(id));
+        return (sql.delete("negocio","codigo="+id,null)>0);
     }
 
     public ArrayList<Negocio> NegociobyVendedor(int id) {

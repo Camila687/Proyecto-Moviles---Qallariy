@@ -17,11 +17,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText cor, pass;
     Button btnLogin;
     daoVendedor dao;
+    //int id=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Bundle b=getIntent().getExtras();
+        //id=b.getInt("Id");
 
         cor=(EditText) findViewById(R.id.username);
         pass=(EditText) findViewById(R.id.password);
@@ -41,6 +44,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void goListNegocio(View view) {
 
         Intent intent = new Intent(this , VerNegociosActivity.class);
+        //intent.putExtra("Id",id);
         startActivity(intent);
 
     }

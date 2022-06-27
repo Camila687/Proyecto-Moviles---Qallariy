@@ -51,7 +51,7 @@ public class EditProductoActivity extends AppCompatActivity {
             }
         });
 
-        producto=(Producto) getIntent().getSerializableExtra("producto");
+        producto=(Producto) dao.getProductoById(id);
         llenarDatos();
     }
 
@@ -59,7 +59,7 @@ public class EditProductoActivity extends AppCompatActivity {
         txtCodigoPEditar.setText(String.valueOf(producto.getCodigo()));
         txtCodigoPEditar.setEnabled(false);
         txtImagePEdit.setText(producto.getImage());
-        txtNombrePEditar.setText(producto.getNombre());
+        txtNombrePEditar.setText(producto.getNombreP());
         txtDescripcionPEditar.setText(producto.getDescripcion());
         txtPrecioPEditar.setText(String.valueOf(producto.getPrecio()));
         txtCantidadPEditar.setText(String.valueOf(producto.getCantidad()));
@@ -78,7 +78,6 @@ public class EditProductoActivity extends AppCompatActivity {
         /* SqLite sqLite=new SqLite(this,"negocio",null,1);*/
 
         //SQLiteDatabase sqLiteDatabase=sqLite.getWritableDatabase();
-
         Integer codigo=Integer.parseInt(txtCodigoPEditar.getText().toString());
         String image=txtImagePEdit.getText().toString();
         String nombre=txtNombrePEditar.getText().toString();
@@ -89,7 +88,7 @@ public class EditProductoActivity extends AppCompatActivity {
         Producto p = new Producto();
         p.setCodigo(codigo);
         p.setImage(image);
-        p.setNombre(nombre);
+        p.setNombreP(nombre);
         p.setDescripcion(descripcion);
         p.setPrecio(precio);
         p.setCantidad(cantidad);
@@ -102,8 +101,8 @@ public class EditProductoActivity extends AppCompatActivity {
             Toast.makeText(this, "ERROR: Campos vacios", Toast.LENGTH_SHORT).show();
         }else if (dao.updateProducto(p)) {
             Toast.makeText(this, "Actualizacion exitosa!!", Toast.LENGTH_SHORT).show();
-            Intent i2=new Intent(EditProductoActivity.this,ProfileActivity.class);
-            i2.putExtra("Id",v.getId());
+            Intent i2=new Intent(EditProductoActivity.this,ProductoActivity.class);
+            i2.putExtra("Id",id);
             startActivity(i2);
             finish();
         } else {

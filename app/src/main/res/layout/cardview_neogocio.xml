@@ -135,6 +135,18 @@
 
                     />
 
+                <Button
+                    android:id="@+id/btnListProduct"
+                    android:theme="@style/RaisedButtonDark"
+                    android:layout_width="115dp"
+                    android:layout_height="31dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="List Product"
+
+                    android:textSize="10dp"
+                    />
+
+
             </LinearLayout>
 
         </LinearLayout>

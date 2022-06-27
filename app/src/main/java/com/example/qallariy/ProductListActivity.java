@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.qallariy.adapter.ProductListAdapterRecyclerView;
+import com.example.qallariy.dao.daoProducto;
 import com.example.qallariy.models.Producto;
 
 import java.util.ArrayList;
@@ -17,7 +19,10 @@ public class ProductListActivity extends AppCompatActivity implements IAxiliarPr
     RecyclerView listPRecycler;
     ArrayList<Producto> listArrayList;
     int id=0;
+    //int IdVendedor =0;
     private ProductListAdapterRecyclerView productListAdapterRecyclerView;
+
+    daoProducto dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,8 @@ public class ProductListActivity extends AppCompatActivity implements IAxiliarPr
         setContentView(R.layout.activity_product_list);
 
         showToolbar(getResources().getString(R.string.toolbar_title_ver) , true);
+
+        dao=new daoProducto(this);
 
         //sqLite = new SqLite(this,"negocio",null,1);
 
@@ -69,6 +76,8 @@ public class ProductListActivity extends AppCompatActivity implements IAxiliarPr
             Toast.makeText(this, "Si lee "+nego.getPicture(), Toast.LENGTH_SHORT).show();
 
         }*/
+
+        listArrayList = dao.selectProducto();
 
 
     }

@@ -50,7 +50,21 @@ public class ListaAdapterRecyclerView extends RecyclerView.Adapter<ListaAdapterR
         holder.descriptionNegocioLista.setText(negocio.getDescription());
         holder.desCategoriaLista.setText(negocio.getCategoria());
 
-        //holder.btnDetalle.setOnClickListener(new ListaAdapterRecyclerView.eventoDetalle(negocio));
+        holder.btnDetalle.setOnClickListener(new eventoListarProducto(negocio));
+    }
+
+    class eventoListarProducto implements View.OnClickListener {
+        private Negocio negocio;
+
+        public eventoListarProducto(Negocio negocio){
+            this.negocio=negocio;
+        }
+
+        @Override
+        public void onClick(View view) {
+            iAxiliarLista.OpcionDetalle(negocio);
+
+        }
     }
 
     @Override

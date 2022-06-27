@@ -101,8 +101,8 @@ public class EditNegocioActivity extends AppCompatActivity {
             Toast.makeText(this, "ERROR: Campos vacios", Toast.LENGTH_SHORT).show();
         }else if (dao.updateNegocio(n)) {
             Toast.makeText(this, "Actualizacion exitosa!!", Toast.LENGTH_SHORT).show();
-            Intent i2=new Intent(EditNegocioActivity.this,ProfileActivity.class);
-            i2.putExtra("Id",v.getId());
+            Intent i2=new Intent(EditNegocioActivity.this,NegociosActivity.class);
+            i2.putExtra("Id",id);
             startActivity(i2);
             finish();
         } else {

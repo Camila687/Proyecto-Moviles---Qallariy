@@ -56,6 +56,7 @@ public class NegocioAdapterRecyclerView extends RecyclerView.Adapter<NegocioAdap
 
         holder.btnEditNegocio.setOnClickListener(new eventoEditar(negocio));
         holder.btnDeleteNegocio.setOnClickListener(new eventoEliminar(negocio));
+        holder.btnListProducto.setOnClickListener(new eventoListar(negocio));
 
 
 
@@ -104,6 +105,20 @@ public class NegocioAdapterRecyclerView extends RecyclerView.Adapter<NegocioAdap
         }
     }
 
+    class eventoListar implements View.OnClickListener {
+        private Negocio negocio;
+
+        public eventoListar(Negocio negocio){
+            this.negocio=negocio;
+        }
+
+        @Override
+        public void onClick(View view) {
+            iAxiliarNegocio.OpcionListar(negocio);
+
+        }
+    }
+
 
     public class NeogocioViewHolder extends RecyclerView.ViewHolder{
         private TextView txtCodigoMostrar;
@@ -114,7 +129,7 @@ public class NegocioAdapterRecyclerView extends RecyclerView.Adapter<NegocioAdap
 
 
 
-        private Button btnEditNegocio, btnDeleteNegocio;
+        private Button btnEditNegocio, btnDeleteNegocio, btnListProducto;
 
         public NeogocioViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -129,6 +144,7 @@ public class NegocioAdapterRecyclerView extends RecyclerView.Adapter<NegocioAdap
 
             btnEditNegocio=itemView.findViewById(R.id.btnEditNegocio);
             btnDeleteNegocio=itemView.findViewById(R.id.btnDeleteNegocio);
+            btnListProducto=itemView.findViewById(R.id.btnListProduct);
         }
     }
 }

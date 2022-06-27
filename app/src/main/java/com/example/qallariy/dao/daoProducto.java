@@ -16,7 +16,7 @@ public class daoProducto {
     ArrayList<Producto> lista;
     SQLiteDatabase sql;
     String bd="BDNeogocio";
-    String table="create table if not exists producto(codigo int,image varchar,nombre varchar,descripcion varchar, precio decimal,cantidad int, idNegocio int)";
+    String table="create table if not exists producto(codigo int,image varchar,nombreP varchar,descripcion varchar, precio decimal,cantidad int, idNegocio int)";
 
     public daoProducto(Context c) {
         this.c=c;
@@ -30,7 +30,7 @@ public class daoProducto {
             ContentValues cv=new ContentValues();
             cv.put("codigo",p.getCodigo());
             cv.put("image",p.getImage());
-            cv.put("nombre",p.getNombre());
+            cv.put("nombreP",p.getNombreP());
             cv.put("descripcion",p.getDescripcion());
             cv.put("precio",p.getPrecio());
             cv.put("cantidad",p.getCantidad());
@@ -53,7 +53,7 @@ public class daoProducto {
         return x;
     }
 
-    private ArrayList<Producto> selectProducto() {
+    public ArrayList<Producto> selectProducto() {
         ArrayList<Producto> lista=new ArrayList<Producto>();
         lista.clear();;
         Cursor cr=sql.rawQuery("select * from producto",null);
@@ -62,16 +62,16 @@ public class daoProducto {
                 Producto p=new Producto();
                 p.setCodigo(cr.getInt(0));
                 p.setImage(cr.getString(1));
-                p.setNombre(cr.getString(1));
-                p.setDescripcion(cr.getString(2));
-                p.setPrecio(cr.getDouble(3));
-                p.setCantidad(cr.getInt(4));
-                p.setIdNegocio(cr.getInt(5));
+                p.setNombreP(cr.getString(2));
+                p.setDescripcion(cr.getString(3));
+                p.setPrecio(cr.getDouble(4));
+                p.setCantidad(cr.getInt(5));
+                p.setIdNegocio(cr.getInt(6));
                 lista.add(p);
             }while (cr.moveToNext());
 
         }
-        Log.v("======",lista.get(0).getNombre());
+        //Log.v("======",lista.get(0).getNombre());
         return lista;
 
     }
@@ -100,17 +100,17 @@ public class daoProducto {
         ContentValues cv=new ContentValues();
         cv.put("codigo",p.getCodigo());
         cv.put("image",p.getImage());
-        cv.put("nombre",p.getNombre());
+        cv.put("nombreP",p.getNombreP());
         cv.put("descripcion",p.getDescripcion());
         cv.put("precio",p.getPrecio());
         cv.put("cantidad",p.getCantidad());
         cv.put("idNegocio",p.getIdNegocio());
-        return(sql.update("producto",cv,"id="+p.getCodigo(),null)>0);
+        return(sql.update("producto",cv,"codigo="+p.getCodigo(),null)>0);
 
     }
 
     public boolean deleteProducto(int id) {
-        return (sql.delete("producto","id="+id,null)>0);
+        return (sql.delete("producto","codigo="+id,null)>0);
     }
 
     public ArrayList<Producto> ProductobyNegocio(int id) {
@@ -122,11 +122,11 @@ public class daoProducto {
                 Producto p=new Producto();
                 p.setCodigo(cr.getInt(0));
                 p.setImage(cr.getString(1));
-                p.setNombre(cr.getString(1));
-                p.setDescripcion(cr.getString(2));
-                p.setPrecio(cr.getDouble(3));
-                p.setCantidad(cr.getInt(4));
-                p.setIdNegocio(cr.getInt(5));
+                p.setNombreP(cr.getString(2));
+                p.setDescripcion(cr.getString(3));
+                p.setPrecio(cr.getDouble(4));
+                p.setCantidad(cr.getInt(5));
+                p.setIdNegocio(cr.getInt(6));
                 lista.add(p);
             }while (cr.moveToNext());
 

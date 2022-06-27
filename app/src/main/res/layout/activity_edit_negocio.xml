@@ -81,6 +81,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
+                        android:enabled="true"
                         android:hint="Business Code" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -141,7 +142,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Category"
-                        android:inputType="number"
+                        android:inputType="text"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
 

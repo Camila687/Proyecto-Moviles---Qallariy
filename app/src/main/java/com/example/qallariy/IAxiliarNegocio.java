@@ -7,4 +7,6 @@ public interface IAxiliarNegocio {
     void OpcionEditar(Negocio negocio);
 
     void OpcionEliminar(Negocio negocio);
+
+    void OpcionListar(Negocio negocio);
 }

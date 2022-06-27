@@ -83,7 +83,7 @@ public class AddProductoActivity extends AppCompatActivity {
         Producto p = new Producto();
         p.setCodigo(codigo);
         p.setImage(image);
-        p.setNombre(nombreProducto);
+        p.setNombreP(nombreProducto);
         p.setDescripcion(descripcion);
         p.setPrecio(precio);
         p.setCantidad(cantidad);

@@ -45,7 +45,7 @@ public class ProductListAdapterRecyclerView extends RecyclerView.Adapter<Product
         Producto producto = business.get(position);
         holder.txtCodigoMostrarPLista.setText(String.valueOf(producto.getCodigo()));
         Picasso.get().load(producto.getImage()).error(R.drawable.notfound).into(holder.pictureCardPLista);
-        holder.userNameCardPLista.setText(producto.getNombre());
+        holder.userNameCardPLista.setText(producto.getNombreP());
         holder.descriptionPLista.setText(producto.getDescripcion());
         holder.desPrecioPLista.setText(String.valueOf(producto.getPrecio()));
         holder.desCantidadPLista.setText(String.valueOf(producto.getCantidad()));
@@ -66,6 +66,8 @@ public class ProductListAdapterRecyclerView extends RecyclerView.Adapter<Product
         private TextView desPrecioPLista;
         private TextView desCantidadPLista;
 
+        //private Button btnDetalle;
+
 
         public ProductListViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,6 +78,8 @@ public class ProductListAdapterRecyclerView extends RecyclerView.Adapter<Product
             descriptionPLista=(TextView)itemView.findViewById(R.id.descriptionProdctD);
             desPrecioPLista=(TextView)itemView.findViewById(R.id.precioDescD);
             desCantidadPLista=(TextView)itemView.findViewById(R.id.cantidadDescD);
+
+            //btnDetalle=(Button) itemView.findViewById(R.id.btnDetalle);
 
 
         }

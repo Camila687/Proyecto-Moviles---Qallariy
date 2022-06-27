@@ -58,6 +58,14 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
 
     }
 
+    /*public void goCardViewProducto(View view) {
+        //dao.NegociobyVendedor();
+        Intent intent = new Intent(this , ProductoActivity.class);
+        intent.putExtra("Id",id);
+        startActivity(intent);
+
+    }*/
+
     public void goNegocioAdd(View view) {
 
         Intent intent = new Intent(this , AddNegocioActivity.class);
@@ -96,8 +104,8 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
         negocios=dao.NegociobyVendedor(id);
         for(int i =0;i < negocios.size();i++){
             negocioAdapterRecyclerView.agregarNegocio(negocios.get(i));
-            Log.v("========",negocios.get(i).getName());
         }
+
     }
 
     @Override
@@ -119,12 +127,15 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
         alert.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if(dao.deleteNegocio(id)) {
+                if(dao.deleteNegocio(negocio.getCodigo())) {
+                    Intent c=new Intent(NegociosActivity.this,NegociosActivity.class);
+                    c.putExtra("Id",id);
+                    startActivity(c);
                     Toast.makeText(NegociosActivity.this, "Se elminó sin problemas", Toast.LENGTH_SHORT).show();
                     negocioAdapterRecyclerView.eliminarNegocio(negocio);
                     finish();
                 }else {
-                    Toast.makeText(NegociosActivity.this, "Error: No se eliminó la cuenta", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NegociosActivity.this, "Error: No se eliminó el negocio", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -137,6 +148,14 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
         });
         alert.show();
 
+    }
+
+    @Override
+    public void OpcionListar(Negocio negocio) {
+        Intent intent = new Intent(this , ProductoActivity.class);
+        intent.putExtra("Id",negocio.getCodigo());
+        intent.putExtra("IdVendedor",id);
+        startActivity(intent);
     }
 
     /*private void eliminarNegocio(Negocio negocio) {
