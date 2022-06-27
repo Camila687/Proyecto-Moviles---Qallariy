@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.example.qallariy.adapter.ListaAdapterRecyclerView;
 import com.example.qallariy.models.Negocio;
-import com.example.qallariy.models.SqLite;
+//import com.example.qallariy.models.SqLite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class VerNegociosActivity extends AppCompatActivity implements IAxiliarLi
 
     RecyclerView listaRecycler;
     ArrayList<Negocio> listaArrayList;
-    SqLite sqLite;
+    //SqLite sqLite;
     int id=0;
     private ListaAdapterRecyclerView listaAdapterRecyclerView;
 
@@ -36,7 +36,7 @@ public class VerNegociosActivity extends AppCompatActivity implements IAxiliarLi
 
         showToolbar(getResources().getString(R.string.toolbar_title_ver) , true);
 
-        sqLite = new SqLite(this,"negocio",null,1);
+        //sqLite = new SqLite(this,"negocio",null,1);
 
         listaRecycler=findViewById(R.id.negocioRecyclerLista);
         listaArrayList=new ArrayList<>();
@@ -63,10 +63,10 @@ public class VerNegociosActivity extends AppCompatActivity implements IAxiliarLi
     }
 
     private void mostrarDatos() {
-        SQLiteDatabase sqLiteDatabase = sqLite.getReadableDatabase();
+        //SQLiteDatabase sqLiteDatabase = sqLite.getReadableDatabase();
         Negocio nego = null;
         //ArrayList<Negocio> listaNegocios = new ArrayList();
-        Cursor cursor=sqLiteDatabase.rawQuery("select * from negocio",null);
+        /*Cursor cursor=sqLiteDatabase.rawQuery("select * from negocio",null);
         Log.v("=======",String.valueOf("fuera del while"));
         while (cursor.moveToNext()) {
             nego = new Negocio();
@@ -80,7 +80,7 @@ public class VerNegociosActivity extends AppCompatActivity implements IAxiliarLi
 
             Toast.makeText(this, "Si lee "+nego.getPicture(), Toast.LENGTH_SHORT).show();
 
-        }
+        }*/
 
 
     }

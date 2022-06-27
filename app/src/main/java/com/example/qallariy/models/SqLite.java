@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-public class SqLite extends SQLiteOpenHelper {
+/*public class SqLite extends SQLiteOpenHelper {
 
 
     public SqLite(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -22,4 +22,4 @@ public class SqLite extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
-}
+}*/

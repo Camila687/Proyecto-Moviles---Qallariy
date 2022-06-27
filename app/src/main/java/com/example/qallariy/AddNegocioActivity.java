@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.qallariy.models.SqLite;
+import com.example.qallariy.dao.daoNegocio;
+import com.example.qallariy.models.Negocio;
+//import com.example.qallariy.models.SqLite;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class AddNegocioActivity extends AppCompatActivity {
@@ -19,10 +21,14 @@ public class AddNegocioActivity extends AppCompatActivity {
     private Button btnGuardar, btnCancelAdd;
     int id=0;
 
+    daoNegocio dao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_negocio);
+
+        dao=new daoNegocio(this);
 
         Bundle b=getIntent().getExtras();
         id=b.getInt("Id");
@@ -67,24 +73,36 @@ public class AddNegocioActivity extends AppCompatActivity {
 
     private void GuardarDatosNegocio(View v) {
 
-        SqLite sqLite=new SqLite(this,"negocio",null,1);
-        SQLiteDatabase sqLiteDatabase=sqLite.getWritableDatabase();
+        //SqLite sqLite=new SqLite(this,"negocio",null,1);
+
+        //SQLiteDatabase sqLiteDatabase=sqLite.getWritableDatabase();
 
         int codigo=Integer.parseInt(txtCodigo.getText().toString());
         String image=txtImage.getText().toString();
         String nombreNegocio=txtNombre.getText().toString();
         String descripcion=txtDescripcion.getText().toString();
         String categoria=txtCategoria.getText().toString();
+        Negocio n = new Negocio();
+        n.setCodigo(codigo);
+        n.setPicture(image);
+        n.setDescription(descripcion);
+        n.setName(nombreNegocio);
+        n.setCategoria(categoria);
+        n.setIdVendedor(id);
+        //Long resultado=sqLiteDatabase.insert("negocio",null,values);
 
-        ContentValues values=new ContentValues();
-        values.put("codigo",codigo);
-        values.put("image",image);
-        values.put("nombre",nombreNegocio);
-        values.put("descripcion",descripcion);
-        values.put("categoria",categoria);
+        if (!n.isNull()) {
+            Toast.makeText(this, "ERROR: Campos vacios", Toast.LENGTH_SHORT).show();
+        } else if (dao.insertNegocio(n)) {
+            Toast.makeText(this, "Registro exitoso!!", Toast.LENGTH_SHORT).show();
+            Intent i2 = new Intent(AddNegocioActivity.this, LoginActivity.class);
+            startActivity(i2);
+            finish();
+        } else {
+            Toast.makeText(this, "Negocio ya registrado!!", Toast.LENGTH_SHORT).show();
+        }
 
-        Long resultado=sqLiteDatabase.insert("negocio",null,values);
-        Toast.makeText(this, "Resultado: " + resultado, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Resultado: " + resultado, Toast.LENGTH_SHORT).show();
 
     }
 

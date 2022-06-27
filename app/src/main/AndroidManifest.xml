@@ -12,10 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Qallariy">
         <activity
+            android:name=".AddProductoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditProductoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProductoActivity"
+            android:exported="false" />
+        <activity
             android:name=".VerNegociosActivity"
             android:exported="false"
-            android:parentActivityName=".LoginActivity"
-            >
+            android:parentActivityName=".LoginActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity" />

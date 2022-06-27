@@ -11,8 +11,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.qallariy.adapter.NegocioAdapterRecyclerView;
+import com.example.qallariy.dao.daoNegocio;
 import com.example.qallariy.models.Negocio;
-import com.example.qallariy.models.SqLite;
+//import com.example.qallariy.models.SqLite;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class EditNegocioActivity extends AppCompatActivity {
@@ -24,12 +25,16 @@ public class EditNegocioActivity extends AppCompatActivity {
 
     private Button btnUpdate;
 
+    daoNegocio dao;
+
     int id=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_negocio);
+
+        dao=new daoNegocio(this);
 
         Bundle b=getIntent().getExtras();
         id=b.getInt("Id");
@@ -72,31 +77,37 @@ public class EditNegocioActivity extends AppCompatActivity {
 
     private void editarDatos(View v) {
 
-        SqLite sqLite=new SqLite(this,"negocio",null,1);
+       /* SqLite sqLite=new SqLite(this,"negocio",null,1);*/
 
-        SQLiteDatabase sqLiteDatabase=sqLite.getWritableDatabase();
-        Integer codigo= Integer.parseInt(txtCodigoEditar.getText().toString());
+        //SQLiteDatabase sqLiteDatabase=sqLite.getWritableDatabase();
+
+        Integer codigo=Integer.parseInt(txtCodigoEditar.getText().toString());
         String image=txtImageEdit.getText().toString();
         String nombre=txtNombreEditar.getText().toString();
         String descripcion=txtDescripcionEditar.getText().toString();
-        String categoria= txtCategoriaEditar.getText().toString();
+        String categoria=txtCategoriaEditar.getText().toString();
+        Negocio n = new Negocio();
+        n.setCodigo(codigo);
+        n.setPicture(image);
+        n.setDescription(descripcion);
+        n.setName(nombre);
+        n.setCategoria(categoria);
+        n.setIdVendedor(id);
 
-        ContentValues values=new ContentValues();
-        values.put("codigo",codigo);
-        values.put("image",image);
-        values.put("nombre",nombre);
-        values.put("descripcion",descripcion);
-        values.put("categoria",categoria);
+        /*sqLiteDatabase.update("negocio",values,"codigo="+codigo,null);
+        sqLiteDatabase.close();*/
 
-        sqLiteDatabase.update("negocio",values,"codigo="+codigo,null);
-        sqLiteDatabase.close();
-        finish();
-
-        Toast.makeText(this, "Datos Editados", Toast.LENGTH_SHORT).show();
-
-        Intent intent=new Intent(EditNegocioActivity.this,NegociosActivity.class);
-        intent.putExtra("Id",id);
-        startActivity(intent);
+        if(!n.isNull()) {
+            Toast.makeText(this, "ERROR: Campos vacios", Toast.LENGTH_SHORT).show();
+        }else if (dao.updateNegocio(n)) {
+            Toast.makeText(this, "Actualizacion exitosa!!", Toast.LENGTH_SHORT).show();
+            Intent i2=new Intent(EditNegocioActivity.this,ProfileActivity.class);
+            i2.putExtra("Id",v.getId());
+            startActivity(i2);
+            finish();
+        } else {
+            Toast.makeText(this, "No se puede actualizar", Toast.LENGTH_SHORT).show();
+        }
 
     }
 }

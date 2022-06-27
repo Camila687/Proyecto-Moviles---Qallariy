@@ -9,19 +9,39 @@ public class Negocio implements Serializable {
     private String name;
     private String description;
     private String categoria;
+    private int idVendedor;
 
+    public boolean isNull() {
+        if(String.valueOf(codigo).equals("")&&picture.equals("")&&name.equals("")&&description.equals("")&&categoria.equals("")&&String.valueOf(idVendedor).equals("")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public Negocio() {
 
     }
 
-    public Negocio(int codigo, String picture, String name, String description, String categoria) {
+    public Negocio(int codigo, String picture, String name, String description, String categoria, int idVendedor) {
         this.codigo = codigo;
         this.picture = picture;
         this.name = name;
         this.description = description;
         this.categoria = categoria;
+        this.idVendedor=idVendedor;
+    }
 
+    @Override
+    public String toString() {
+        return "Negocio{" +
+                "codigo=" + codigo +
+                ", picture='" + picture + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", idVendedor=" + idVendedor +
+                '}';
     }
 
     public int getCodigo() {
@@ -64,5 +84,11 @@ public class Negocio implements Serializable {
         this.categoria = categoria;
     }
 
+    public int getIdVendedor() {
+        return idVendedor;
+    }
 
+    public void setIdVendedor(int idVendedor) {
+        this.idVendedor = idVendedor;
+    }
 }

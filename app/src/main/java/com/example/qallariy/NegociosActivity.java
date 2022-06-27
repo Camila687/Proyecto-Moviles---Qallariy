@@ -15,8 +15,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.qallariy.adapter.NegocioAdapterRecyclerView;
+import com.example.qallariy.dao.daoNegocio;
 import com.example.qallariy.models.Negocio;
-import com.example.qallariy.models.SqLite;
+//import com.example.qallariy.models.SqLite;
 
 import java.util.ArrayList;
 
@@ -24,14 +25,17 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
 
     RecyclerView negocioRecycler;
     ArrayList<Negocio> negocioArrayList;
-    SqLite sqLite;
+    //SqLite sqLite;
     int id=0;
     private NegocioAdapterRecyclerView negocioAdapterRecyclerView;
+    daoNegocio dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_negocios);
+
+        dao=new daoNegocio(this);
 
         Bundle b=getIntent().getExtras();
         id=b.getInt("Id");
@@ -40,7 +44,7 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
         RecyclerView recyclerView=findViewById(R.id.negocioRecycler);
 
         negocioArrayList=new ArrayList<>();
-        sqLite = new SqLite(this,"negocio",null,1);
+        //sqLite = new SqLite(this,"negocio",null,1);
 
         negocioAdapterRecyclerView= new NegocioAdapterRecyclerView(this,negocioArrayList);
 
@@ -71,10 +75,10 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
     }
 
     private void mostrarDatos() {
-        SQLiteDatabase sqLiteDatabase = sqLite.getReadableDatabase();
+        //SQLiteDatabase sqLiteDatabase = sqLite.getReadableDatabase();
         Negocio nego = null;
 
-        Cursor cursor=sqLiteDatabase.rawQuery("select * from negocio",null);
+        /*Cursor cursor=sqLiteDatabase.rawQuery("select * from negocio",null);
         while (cursor.moveToNext()) {
             nego = new Negocio();
             nego.setCodigo(cursor.getInt(0));
@@ -87,6 +91,12 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
             System.out.println("Si lee"+nego.getPicture());
 
 
+        }*/
+        ArrayList<Negocio> negocios= new ArrayList<Negocio>();
+        negocios=dao.NegociobyVendedor(id);
+        for(int i =0;i < negocios.size();i++){
+            negocioAdapterRecyclerView.agregarNegocio(negocios.get(i));
+            Log.v("========",negocios.get(i).getName());
         }
     }
 
@@ -109,7 +119,14 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
         alert.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                eliminarNegocio(negocio);
+                if(dao.deleteNegocio(id)) {
+                    Toast.makeText(NegociosActivity.this, "Se elminó sin problemas", Toast.LENGTH_SHORT).show();
+                    negocioAdapterRecyclerView.eliminarNegocio(negocio);
+                    finish();
+                }else {
+                    Toast.makeText(NegociosActivity.this, "Error: No se eliminó la cuenta", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -122,9 +139,9 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
 
     }
 
-    private void eliminarNegocio(Negocio negocio) {
+    /*private void eliminarNegocio(Negocio negocio) {
+        //SqLite sqLite=new SqLite(this,"negocio",null,1);
 
-        SqLite sqLite=new SqLite(this,"negocio",null,1);
         SQLiteDatabase sqLiteDatabase=sqLite.getWritableDatabase();
         String codigo=String.valueOf(negocio.getCodigo());
         if (!codigo.isEmpty()) {
@@ -135,5 +152,5 @@ public class NegociosActivity extends AppCompatActivity implements IAxiliarNegoc
         } else {
             Toast.makeText(this, "Error: No se eliminó la pizza", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 }
