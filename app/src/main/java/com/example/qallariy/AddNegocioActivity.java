@@ -17,7 +17,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class AddNegocioActivity extends AppCompatActivity {
 
-    private TextInputEditText txtCodigo,txtImage, txtNombre, txtDescripcion, txtCategoria;
+    private TextInputEditText txtCodigo,txtImage, txtNombre, txtDescripcion, txtCategoria, txtDireccion;
     private Button btnGuardar, btnCancelAdd;
     int IdVendedor=0;
 
@@ -38,6 +38,7 @@ public class AddNegocioActivity extends AppCompatActivity {
         txtNombre=(TextInputEditText)findViewById(R.id.negocioNameAdd);
         txtDescripcion=(TextInputEditText)findViewById(R.id.descripcionNegocioAdd);
         txtCategoria=(TextInputEditText)findViewById(R.id.categoriaNegocioAdd);
+        txtDireccion=(TextInputEditText)findViewById(R.id.direccionNegocioAdd);
 
         btnGuardar=(Button) findViewById(R.id.btnNegocioAdd);
         btnCancelAdd=(Button) findViewById(R.id.btnCancelNegocio);
@@ -46,7 +47,7 @@ public class AddNegocioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(txtCodigo.getText().toString().equals("")||txtImage.getText().toString().equals("")||txtNombre.getText().toString().equals("")|| txtDescripcion.getText().toString().equals("")|| txtCategoria.getText().toString().equals("")) {
+                if(txtCodigo.getText().toString().equals("")||txtImage.getText().toString().equals("")||txtNombre.getText().toString().equals("")|| txtDescripcion.getText().toString().equals("")|| txtCategoria.getText().toString().equals("")|| txtDireccion.getText().toString().equals("")) {
                     validarTextos();
                 }else {
                     GuardarDatosNegocio(v);
@@ -82,12 +83,14 @@ public class AddNegocioActivity extends AppCompatActivity {
         String nombreNegocio=txtNombre.getText().toString();
         String descripcion=txtDescripcion.getText().toString();
         String categoria=txtCategoria.getText().toString();
+        String direccion=txtDireccion.getText().toString();
         Negocio n = new Negocio();
         n.setCodigo(codigo);
         n.setPicture(image);
         n.setDescription(descripcion);
         n.setName(nombreNegocio);
         n.setCategoria(categoria);
+        n.setDireccion(direccion);
         n.setIdVendedor(IdVendedor);
         //Long resultado=sqLiteDatabase.insert("negocio",null,values);
 
@@ -112,6 +115,7 @@ public class AddNegocioActivity extends AppCompatActivity {
         txtNombre.setText("");
         txtDescripcion.setText("");
         txtCategoria.setText("");
+        txtDireccion.setText("");
     }
 
     public void validarTextos() {
@@ -129,6 +133,9 @@ public class AddNegocioActivity extends AppCompatActivity {
         }
         if(txtCategoria.getText().toString().equals("")) {
             txtCategoria.setText("Ingrese una categoria");
+        }
+        if(txtDireccion.getText().toString().equals("")) {
+            txtDireccion.setText("Ingrese la direccion de su negocio");
         }
 
     }

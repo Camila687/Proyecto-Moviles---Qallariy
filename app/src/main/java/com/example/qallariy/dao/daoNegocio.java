@@ -16,7 +16,7 @@ public class daoNegocio {
     ArrayList<Negocio> lista;
     SQLiteDatabase sql;
     String bd="BDNeogocio";
-    String table="create table if not exists negocio(codigo int,image varchar,nombre varchar, descripcion varchar,categoria varchar, idVendedor int)";
+    String table="create table if not exists negocio(codigo int,image varchar,nombre varchar, descripcion varchar,categoria varchar, direccion varchar, idVendedor int)";
 
     public daoNegocio(Context c) {
         this.c=c;
@@ -33,6 +33,7 @@ public class daoNegocio {
             cv.put("nombre",n.getName());
             cv.put("descripcion",n.getDescription());
             cv.put("categoria",n.getCategoria());
+            cv.put("direccion",n.getDireccion());
             cv.put("idVendedor",n.getIdVendedor());
             return(sql.insert("negocio",null,cv)>0);
 
@@ -64,7 +65,8 @@ public class daoNegocio {
                 n.setName(cr.getString(2));
                 n.setDescription(cr.getString(3));
                 n.setCategoria(cr.getString(4));
-                n.setIdVendedor(cr.getInt(5));
+                n.setDireccion(cr.getString(5));
+                n.setIdVendedor(cr.getInt(6));
                 lista.add(n);
             }while (cr.moveToNext());
 
@@ -104,6 +106,7 @@ public class daoNegocio {
             cv.put("nombre",n.getName());
             cv.put("descripcion",n.getDescription());
             cv.put("categoria",n.getCategoria());
+            cv.put("direccion",n.getDireccion());
             cv.put("idVendedor",n.getIdVendedor());
             return(sql.update("negocio",cv,"codigo="+n.getCodigo(),null)>0);
 
@@ -126,7 +129,8 @@ public class daoNegocio {
                 n.setName(cr.getString(2));
                 n.setDescription(cr.getString(3));
                 n.setCategoria(cr.getString(4));
-                n.setIdVendedor(cr.getInt(5));
+                n.setDireccion(cr.getString(5));
+                n.setIdVendedor(cr.getInt(6));
                 lista.add(n);
             }while (cr.moveToNext());
 

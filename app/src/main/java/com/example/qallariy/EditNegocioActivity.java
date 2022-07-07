@@ -20,7 +20,7 @@ public class EditNegocioActivity extends AppCompatActivity {
 
     private NegocioAdapterRecyclerView negocioAdapterRecyclerView;
 
-    private TextInputEditText txtCodigoEditar, txtImageEdit, txtNombreEditar, txtDescripcionEditar,txtCategoriaEditar;
+    private TextInputEditText txtCodigoEditar, txtImageEdit, txtNombreEditar, txtDescripcionEditar,txtCategoriaEditar, txtDireccionEditar;
     private Negocio negocio;
 
     private Button btnUpdate;
@@ -44,6 +44,8 @@ public class EditNegocioActivity extends AppCompatActivity {
         txtNombreEditar = findViewById(R.id.negocioNameEdit);
         txtDescripcionEditar = findViewById(R.id.descripcionNegocioEdit);
         txtCategoriaEditar = findViewById(R.id.categoriaNegocioEdit);
+        txtDireccionEditar = findViewById(R.id.direcciónNegocioEdit);
+
         btnUpdate = findViewById(R.id.btnNegocioEdit);
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +67,7 @@ public class EditNegocioActivity extends AppCompatActivity {
         txtNombreEditar.setText(negocio.getName());
         txtDescripcionEditar.setText(negocio.getDescription());
         txtCategoriaEditar.setText(negocio.getCategoria());
+        txtDireccionEditar.setText(negocio.getDireccion());
     }
 
     public void goEditNegocioCancel(View view) {
@@ -86,12 +89,14 @@ public class EditNegocioActivity extends AppCompatActivity {
         String nombre=txtNombreEditar.getText().toString();
         String descripcion=txtDescripcionEditar.getText().toString();
         String categoria=txtCategoriaEditar.getText().toString();
+        String direccion=txtDireccionEditar.getText().toString();
         Negocio n = new Negocio();
         n.setCodigo(codigo);
         n.setPicture(image);
         n.setDescription(descripcion);
         n.setName(nombre);
         n.setCategoria(categoria);
+        n.setDireccion(direccion);
         n.setIdVendedor(IdVendedor);
 
         /*sqLiteDatabase.update("negocio",values,"codigo="+codigo,null);
